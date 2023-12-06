@@ -7,7 +7,7 @@ from  PIL import Image
 from handlers.base_handler import BaseHandler
 
 
-class DownloadImageHandler(BaseHandler):
+class UploadImageHandler(BaseHandler):
 
     async def post(self):
         self.set_header('Content-Type', 'application/json')
@@ -24,3 +24,6 @@ class DownloadImageHandler(BaseHandler):
         for num, img in enumerate(img_data["file"]):
             image = Image.open(io.BytesIO(img["body"]))
             image.save(f"{os.path.abspath(img_path)}/image{num}.png")
+        answer = {"result" : f"http://127.0.0.1:8081/showimage/{id}"}
+        await self.finish(json.dumps(answer))
+        # self.redirect(f"/showimage/{id}")

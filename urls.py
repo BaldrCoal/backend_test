@@ -8,13 +8,14 @@ from handlers.sum_handler import SumHandler
 # from handlers.result_handler import ResultHandler
 #
 from handlers.file_handler import FileHandler
-from handlers.download_image_handler import DownloadImageHandler
-
+from handlers.download_image_handler import UploadImageHandler
+from handlers.get_image_handler import GetImageHandler
 
 urls = [
     (r'/', IndexHandler,),
     (r'/sum', SumHandler,),
-    (r'/downloadimage', DownloadImageHandler),
+    (r'/uploadimage', UploadImageHandler),
+    (r'/showimage/(.*)', GetImageHandler),
     (r"/data/(.*)", FileHandler, {"path": "./data"}),
     (r"/(.*)/?", FileHandler, {"path": "./static"}),
 ]
